@@ -5,33 +5,85 @@
     width: 120px;
     margin: auto;
 }
+.ok-container{
+    grid-column: 1/2;
+    grid-row: 2/3;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
 .iconCheck{
     width: 30px;
     height: 30px;
-    grid-column: 1/2;
-    grid-row: 2/3;
     cursor: pointer;
+    position: absolute;
+    
     
 }
-.trashIcon{
-    width: 20px;
-    height: 20px;
+.iconCheckGreen{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 0;
+    
+    
+}
+.trash-conteiner{
     grid-column: 3/4;
     grid-row: 1/2;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    position: relative;
+
+}
+.trash-icon-top{
+    width: 20px;
+    height: 20px;
     margin: auto;
     cursor: pointer;
+    position: absolute;
+    opacity: 0;
 }
-.trashIcon:hover{
-
+.trash-icon{
+    opacity: 1;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.trash-icon-top:hover{
+   opacity: 1;
 }
 .text-p--completed{
     text-decoration: line-through;
 }
 .icon-check--active{
+    opacity: 0;
+
+}
+.icon-checkg--active{
+    opacity: 1;
 
 }
 .order-list--active{
     background-color: #B5A3A3;
+}
+.container-button{
+    grid-column: 3/4;
+    grid-row: 5/6;
+    display: flex;
+    justify-content: end;
+}
+.create-button{
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: #D0D3F5;
+    border-radius: 50px;
+    color: white;
+    font-size: 2rem;
 }
 *{
     font-family: 'Anybody', cursive;
