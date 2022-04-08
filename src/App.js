@@ -8,21 +8,36 @@ import { TodoList } from "./components/TodoList";
 import { CreateTodoButton } from "./components/CreateTodoButton";
 import img1 from './images/workman.png'
 
+// Create hook to useLocalStorage
+function useLocalStorage(itemName, initialValue){
+  const  localStorageItem = localStorage.getItem(itemName)
+  let parsedLocalStorage;
+  if (!localStorageItem){
+    localStorage.setItem(itemName, JSON.stringify(initialValue))
+    parsedLocalStorage = initialValue
+
+  }else{
+    parsedLocalStorage = JSON.parse(localStorageItem)
+  }
+  const [item, setItem] = React.useState(parsedLocalStorage)
+
+  const saveItem=(newItem)=>{
+    localStorage.setItem(itemName, JSON.stringify(newItem))
+    setItem(newItem)
+  }
+  return[
+    item,
+    saveItem
+  ]
+}
+
 function App() {
 
   //LocalStorage
-  const  localStorageTodos = localStorage.getItem('TODOS_V0.1')
-  let parsedLocalStorage;
-  if (!localStorageTodos){
-    localStorage.setItem('TODOS_V0.1', JSON.stringify([]))
-    parsedLocalStorage = []
-
-  }else{
-    parsedLocalStorage = JSON.parse(localStorageTodos)
-  }
+  
 
   //states
-  const [todos, setTodo] = React.useState(parsedLocalStorage)
+  const [todos, saveTodos] = useLocalStorage('TODOS_V0.1',[])
   const [searchValue, setSearchValue] = React.useState('')
 
   //filters
@@ -45,15 +60,13 @@ function App() {
   }
 
   //completeTodos-deleteTodos
-  const saveTodos=(newTodos)=>{
-    localStorage.setItem('TODOS_V0.1', JSON.stringify(newTodos))
-  }
+  
   const completeTodos= (text) =>{
     const todoIndex = todos.findIndex(todo=> todo.text === text);
     const newTodos = [...todos]
     newTodos[todoIndex].completed = true
     saveTodos(newTodos)
-    setTodo(newTodos)
+    
   }
 
   const deleteTodos= (text) =>{
@@ -61,7 +74,7 @@ function App() {
     const newTodos = [...todos]
     newTodos.splice(todoIndex, 1)
     saveTodos(newTodos)
-    setTodo(newTodos)
+
   }
 
 
