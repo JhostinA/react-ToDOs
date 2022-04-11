@@ -8,7 +8,7 @@ import { CreateTodoButton } from "./components/CreateTodoButton";
 import img1 from './images/workman.png'
 import { TodoContext } from "./TodoContext/TodoContext";
 import { Modal } from "./components/Modal"
-
+import {CreateTodoForm} from "./components/CreateTodoForm"
 
 function App() {
   const {
@@ -42,7 +42,7 @@ function App() {
           </TodoList>
           {!!showModal &&(
             <Modal>
-              <p>hola</p>
+              <CreateTodoForm/>
             </Modal>
           )}
              
