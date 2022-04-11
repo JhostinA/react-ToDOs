@@ -85,6 +85,10 @@
     color: white;
     font-size: 2rem;
 }
+.load-error-create{
+    text-align: center;
+    
+}
 *{
     font-family: 'Anybody', cursive;
     box-sizing: border-box;

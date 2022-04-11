@@ -10,34 +10,65 @@ import img1 from './images/workman.png'
 
 // Create hook to useLocalStorage
 function useLocalStorage(itemName, initialValue){
-  const  localStorageItem = localStorage.getItem(itemName)
-  let parsedLocalStorage;
-  if (!localStorageItem){
-    localStorage.setItem(itemName, JSON.stringify(initialValue))
-    parsedLocalStorage = initialValue
+  const [error, setError] = React.useState(false)
+  const [loading, setLoading] = React.useState(true)
+  const [item, setItem] = React.useState(initialValue)
+  React.useEffect(()=>{
+    setTimeout(()=>{
+      try{
+        const  localStorageItem = localStorage.getItem(itemName)
+        let parsedLocalStorage;
+        if (!localStorageItem){
+          localStorage.setItem(itemName, JSON.stringify(initialValue))
+          parsedLocalStorage = initialValue
+      
+        }else{
+          parsedLocalStorage = JSON.parse(localStorageItem)
+        }
+  
+        setItem(parsedLocalStorage)
+        setLoading(false)
+      }catch(error){
+        setError(error)
 
-  }else{
-    parsedLocalStorage = JSON.parse(localStorageItem)
-  }
-  const [item, setItem] = React.useState(parsedLocalStorage)
+      }
+      
+    },1000)
+   
+  })
+  
+  
 
   const saveItem=(newItem)=>{
-    localStorage.setItem(itemName, JSON.stringify(newItem))
-    setItem(newItem)
+    try{
+      localStorage.setItem(itemName, JSON.stringify(newItem))
+      setItem(newItem)
+    }catch(error){
+      setError(error)
+    }
+    
   }
-  return[
+  return{
     item,
-    saveItem
-  ]
+    saveItem,
+    loading,
+    error,
+  }
+    
+  
 }
 
 function App() {
 
-  //LocalStorage
-  
 
   //states
-  const [todos, saveTodos] = useLocalStorage('TODOS_V0.1',[])
+  const {
+    item:todos,
+    saveItem:saveTodos,
+    loading,
+    error,
+
+  } = useLocalStorage('TODOS_V0.1',[])
   const [searchValue, setSearchValue] = React.useState('')
 
   //filters
@@ -91,6 +122,10 @@ function App() {
       />
       <img className="icono" src={img1} alt="task"></img>
       <TodoList >
+        {error && <p  className="load-error-create">upss, Ha ocurrido un error</p>}
+        {loading && <p className="load-error-create">Cargando</p>}
+        {(!loading && !searchedTodos) && <p className="load-error-create">Crea tu primera tarea</p>}
+
         {searchedTodos.map(todo =>(
           <TodoItem 
             completed={todo.completed} 
