@@ -84,10 +84,23 @@
     border-radius: 50px;
     color: white;
     font-size: 2rem;
+    z-index: 1;
 }
 .load-error-create{
     text-align: center;
-    
+
+}
+.ModalTodos{
+        background-color: rgba(32,35,41,0.8);
+        position: fixed;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
 }
 *{
     font-family: 'Anybody', cursive;

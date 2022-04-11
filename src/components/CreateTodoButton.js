@@ -1,8 +1,8 @@
 import React from "react";
 
-function CreateTodoButton(){
+function CreateTodoButton(props){
     const createNewItem = ()=>{
-        alert("su nueva tarea a sido agregada a la lista");
+        props.setShowModal(prevState => !prevState);
     }
     return(
         <div className="container-button">

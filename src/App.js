@@ -7,11 +7,18 @@ import { TodoList } from "./components/TodoList";
 import { CreateTodoButton } from "./components/CreateTodoButton";
 import img1 from './images/workman.png'
 import { TodoContext } from "./TodoContext/TodoContext";
-
+import { Modal } from "./components/Modal"
 
 
 function App() {
-  const {error,loading,searchedTodos,completeTodos,deleteTodos} = React.useContext(TodoContext)
+  const {
+    error,
+    loading,
+    searchedTodos,
+    completeTodos,
+    deleteTodos,
+    showModal,
+    setShowModal} = React.useContext(TodoContext)
   return (
         <React.Fragment>
           <h1> Bienvenido a tu lista de tareas</h1>
@@ -32,10 +39,16 @@ function App() {
                 deleteTask={()=> deleteTodos(todo.text)}
               />
             ))}
-          </TodoList>   
+          </TodoList>
+          {!!showModal &&(
+            <Modal>
+              <p>hola</p>
+            </Modal>
+          )}
              
               
-          <CreateTodoButton/>
+          <CreateTodoButton
+           setShowModal={setShowModal} />
 
         </React.Fragment>
     
