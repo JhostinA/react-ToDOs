@@ -14,8 +14,36 @@ html{
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-columns: 20px 1fr 1fr 20px;
-  grid-template-rows: 80px 60px 40px 1fr 50px;
   background-color: #F5F5F5;
+  grid-template-columns: 10px 1fr 1fr 10px;
+  grid-template-rows: 1fr 70px 30px 1fr 1fr 1fr 1fr 20px;
+  
+}
+@media (min-width: 480px) and (max-width: 768px){
+  #root{
+    grid-template-columns: 10px 1fr 2fr 10px;
+    grid-template-rows: 1fr 90px 60px 1fr 1fr 1fr 1fr 20px;
+  }
+  
+}
+@media (min-width: 768px) and (max-width: 960px){
+  #root{
+    grid-template-columns: 30px 1fr 2fr 30px;
+    grid-template-rows: 1fr 90px 60px 1fr 1fr 1fr 1fr 20px;
+  }
+  
+}
+@media (min-width: 960px) and (max-width: 1024px){
+  #root{
+    grid-template-columns: 60px 1fr 2fr 60px;
+    grid-template-rows: 1fr 1fr 60px 1fr 1fr 1fr 1fr 20px;
+  }
+  
+}
+@media (min-width: 1024px)  {
+  #root{
+    grid-template-columns: 60px 1fr 2fr 60px;
+    grid-template-rows: 1fr 60px 1fr 1fr 1fr 1fr 1fr 20px;
+  }
   
 }

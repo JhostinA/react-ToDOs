@@ -28,7 +28,7 @@ function App() {
           <TodoList >
             {error && <p  className="load-error-create">upss, Ha ocurrido un error</p>}
             {loading && <p className="load-error-create">Cargando</p>}
-            {(!loading && !searchedTodos) && <p className="load-error-create">Crea tu primera tarea</p>}
+            {(!loading && !searchedTodos.length) && <p className="load-error-create">Crea tu primera tarea</p>}
     
             {searchedTodos.map(todo =>(
               <TodoItem   

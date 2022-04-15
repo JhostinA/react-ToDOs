@@ -24,7 +24,7 @@ function CreateTodoForm(){
 
     return (
         <form onSubmit={onAccept}>
-            <label>Crear una tarea</label>
+            <label className="title-modal">Crear una tarea</label>
             <textarea 
                 value = {newtodoValue}
                 onChange={onChange}
